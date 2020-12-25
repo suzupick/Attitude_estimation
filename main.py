@@ -37,7 +37,7 @@ def testfn():
         vec_acc = np.mat([ax,ay,az]).T
         vec_mag = np.mat([mx,my,mz]).T
 
-        Rmat = func.euler_rotate(t, math.pi/4, 0)
+        Rmat = func.euler_rotate(0, 0, t)
         vec_acc = Rmat * vec_acc
         vec_mag = Rmat * vec_mag
 
@@ -50,11 +50,12 @@ def testfn():
         yaw = attitude[2]
 
         basis_x = np.mat([1, 0, 0]).T
-        direction = func.euler_rotate(roll, pitch, yaw) * basis_x
+        basis_y = np.mat([0, 1, 0]).T
+        direction = func.euler_rotate(-roll, -pitch, -yaw).T * basis_x
 
         plot3D.plot_vector(direction, point)
         t += 0.05
-        plt.pause(.05)
+        plt.pause(.01)
 
         print(roll, pitch, yaw)
 
