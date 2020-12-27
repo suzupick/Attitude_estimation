@@ -3,8 +3,7 @@ from socket_comm import sckcomm
 
 
 def main_fn():
-    raspi_sck = sckcomm.sckcomm("127.0.0.1", 50007)
-    raspi_sck.send_rcv("123")
+    sckcomm.attitude_server()
 
 if __name__ == "__main__":
     try:
