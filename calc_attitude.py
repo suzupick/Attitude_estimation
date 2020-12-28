@@ -1,4 +1,3 @@
-from matplotlib.pyplot import axes
 import numpy as np
 import math
 
@@ -6,6 +5,7 @@ if __name__ == "main":
     # ----------デバッグ用-----------
     import plot3D
     from mpl_toolkits.mplot3d import Axes3D
+    from matplotlib.pyplot import axes
     import matplotlib.pyplot as plt
     import sys
     # ----------デバッグ用-----------
