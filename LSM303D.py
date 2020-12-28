@@ -19,8 +19,9 @@ def get_vec_mag():
 def get_euler_angles():
     return calc_attitude.calc_attitude(get_vec_acc(), get_vec_mag())
 
-if __name__ == "main":
-    vec_acc = get_vec_acc()
-    vec_mag = get_vec_mag()
-    euler_angles = get_euler_angles()
-    print(vec_mag.T, euler_angles)
+if __name__ == "__main__":
+    while True:
+        vec_acc = get_vec_acc()
+        vec_mag = get_vec_mag()
+        euler_angles = get_euler_angles()
+        print(vec_mag.T, euler_angles)
