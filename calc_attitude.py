@@ -199,4 +199,4 @@ if __name__ == "__main__":
         sys.exit()
     except:
         print("不明なエラー")
-        sys.exit()
+        raise

@@ -9,7 +9,6 @@
 # ソケット通信　python公式ドキュメント
 # https://docs.python.org/ja/3.6/howto/sockets.html
 
-from RaspberryPi.LSM303D import get_euler_angles
 import socket
 
 CRLF = "\r\n"
