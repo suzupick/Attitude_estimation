@@ -10,7 +10,7 @@
 # https://docs.python.org/ja/3.6/howto/sockets.html
 
 import socket
-from . import LSM303D
+import LSM303D
 
 CRLF = "\r\n"
 
