@@ -1,16 +1,6 @@
 import numpy as np
 import math
 
-if __name__ == "main":
-    # ----------デバッグ用-----------
-    import plot3D
-    from mpl_toolkits.mplot3d import Axes3D
-    from matplotlib.pyplot import axes
-    import matplotlib.pyplot as plt
-    import sys
-    # ----------デバッグ用-----------
-
-
 def map_to_anguler_domain(rad, area="all"):
     # (-π,π)にマップ
     if area == "all":
@@ -144,15 +134,7 @@ def calc_attitude(vec_acc, vec_mag):
     return attitude
 
 def testfn():
-    fig = plt.figure()
-    axis = fig.add_subplot(111, projection="3d", xlabel="x", ylabel="y", zlabel="z")
-    point, = axis.plot([], [], [], "o", color = "C3")
-
-    axis.set_xlim(-1,1)
-    axis.set_ylim(-1,1)
-    axis.set_zlim(-1,1)
-
-    plot3D.init(axis)
+    axis, point = plot3D.init()
 
     t = 0
     while True:
@@ -189,10 +171,18 @@ def testfn():
         plot3D.plot_vector(direction, point)
         t += 0.05
         plt.pause(.01)
+        time.sleep(0.1)
 
-        print(roll, pitch, yaw)
+        print(roll, pitch, yaw, map_to_anguler_domain(t))
 
 if __name__ == "__main__":
+    import plot3D
+    from mpl_toolkits.mplot3d import Axes3D
+    from matplotlib.pyplot import axes
+    import matplotlib.pyplot as plt
+    import sys
+    import time
+
     try:
         testfn()
     except KeyboardInterrupt:

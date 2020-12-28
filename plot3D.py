@@ -2,7 +2,15 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 
-def init(ax):
+def init():
+    fig = plt.figure()
+    axis = fig.add_subplot(111, projection="3d", xlabel="x", ylabel="y", zlabel="z")
+    point, = axis.plot([], [], [], "o", color = "C3")
+
+    axis.set_xlim(-1,1)
+    axis.set_ylim(-1,1)
+    axis.set_zlim(-1,1)
+
     _phi = np.linspace(0, 2*np.pi, 30)
     _theta = np.linspace(0, np.pi, 15)
     phi, theta = np.meshgrid(_phi, _theta)
@@ -12,7 +20,9 @@ def init(ax):
     y = r*np.sin(phi)*np.sin(theta)
     z = r*np.cos(theta)
 
-    ax.plot_wireframe(x, y, z, color="k", alpha=0.2)
+    axis.plot_wireframe(x, y, z, color="k", alpha=0.2)
+
+    return axis, point
 
 def plot_vector(vec, point):
     point.set_data((vec[0,0], vec[1,0]))
