@@ -1,5 +1,5 @@
 import sys
-from socket_comm import sckcomm
+from .. import sckcomm
 
 
 def main_fn():

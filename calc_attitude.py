@@ -114,7 +114,7 @@ def magnet2yaw(vec_acc, vec_mag):
     yaw = map_to_anguler_domain(yaw)
     return yaw
 
-def get_attitude(vec_acc, vec_mag):
+def calc_attitude(vec_acc, vec_mag):
     """
     加速度と磁束密度から機体のロール・ピッチ・ヨーを計算する。
     機体に傾きが無く、真北(0,0,0)を向いている状態から、
@@ -134,9 +134,6 @@ def get_attitude(vec_acc, vec_mag):
     -------
     attitude : numpy.matrix 3x1
         (ロール, ピッチ, ヨー) の3次元ベクトル
-
-
-
     """
     roll = accel2roll(vec_acc)
     pitch = accel2pitch(vec_acc)
@@ -177,7 +174,7 @@ def testfn():
         vec_mag = Rmat * vec_mag
 
 
-        attitude = get_attitude(vec_acc, vec_mag)
+        attitude = calc_attitude(vec_acc, vec_mag)
 
 
         roll = attitude[0]
