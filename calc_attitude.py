@@ -2,12 +2,13 @@ from matplotlib.pyplot import axes
 import numpy as np
 import math
 
-# ----------デバッグ用-----------
-import plot3D
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
-import sys
-# ----------デバッグ用-----------
+if __name__ == "main":
+    # ----------デバッグ用-----------
+    import plot3D
+    from mpl_toolkits.mplot3d import Axes3D
+    import matplotlib.pyplot as plt
+    import sys
+    # ----------デバッグ用-----------
 
 
 def map_to_anguler_domain(rad, area="all"):
