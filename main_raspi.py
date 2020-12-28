@@ -15,8 +15,12 @@ import LSM303D
 CRLF = "\r\n"
 
 def attitude_server():
+    ip_adr = "192.168.0.6"
+    port = 50007
+    message = ""
+
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('127.0.0.1', 50007)) # IPアドレスとポートを指定
+    s.bind((ip_adr, port)) # IPアドレスとポートを指定
     s.listen(1) # 並列処理数
     try:
         while True:
@@ -33,9 +37,9 @@ def attitude_server():
                         roll = euler_angles[0,0]
                         pitch = euler_angles[1,0]
                         yaw = euler_angles[2,0]
-
                         message = (str(roll) + CRLF + str(pitch) + CRLF + str(yaw)).encode() # エンコード
-                        conn.sendall(message) # send
+
+                    conn.sendall(message) # send    
     except:
         raise
     finally:

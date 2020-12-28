@@ -14,7 +14,7 @@ import socket
 CRLF = "\r\n"
 
 def request_attitude():
-    ip_adr = "127.0.0.1"
+    ip_adr = "192.168.0.6"
     port = 50007
     message = "attitude"
 
