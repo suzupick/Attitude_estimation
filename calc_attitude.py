@@ -140,7 +140,7 @@ def calc_attitude(vec_acc, vec_mag):
     pitch = accel2pitch(vec_acc)
     yaw = magnet2yaw(vec_acc, vec_mag)
 
-    attitude = np.array([roll, pitch, yaw])
+    attitude = np.mat([roll, pitch, yaw]).T
     return attitude
 
 def testfn():
