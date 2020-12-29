@@ -43,14 +43,14 @@ def attitude_server():
                         euler_angles = LSM303D.get_euler_angles()
                         
                         if len(roll) > N_ave:
-                            roll.pop(0)
-                            pitch.pop(0)
-                            yaw.pop(0)
+                            roll = np.delete(roll, 0, 0)
+                            pitch = np.delete(pitch, 0, 0)
+                            yaw = np.delete(yaw, 0, 0)
 
                         roll = np.append(roll, euler_angles[0,0])
                         pitch = np.append(pitch, euler_angles[1,0])
                         yaw = np.append(yaw, euler_angles[2,0])
-                        message = (str(roll.mean()) + CRLF + str(pitch.mean()) + CRLF + str(yaw.mean())).encode() # エンコード
+                        message = (str(np.mean(roll)) + CRLF + str(np.mean(pitch)) + CRLF + str(np.mean(yaw)).encode() # エンコード
                         message = message[::-1] # Unity用にエンディアン変換
 
                     conn.sendall(message) # send    
