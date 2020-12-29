@@ -11,6 +11,7 @@
 
 import socket
 import LSM303D
+import numpy as np
 
 CRLF = "\r\n"
 
@@ -22,6 +23,12 @@ def attitude_server():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((ip_adr, port)) # IPアドレスとポートを指定
     s.listen(1) # 並列処理数
+
+    N_ave = 10
+    roll = np.empty(N_ave)
+    pitch = np.empty(N_ave)
+    yaw = np.empty(N_ave)
+
     try:
         while True:
             conn, addr = s.accept() # 誰かがアクセスしてきたら、コネクションとアドレスを入れる
@@ -34,11 +41,17 @@ def attitude_server():
                     
                     if data == b'attitude': # attitudeリクエストの場合の処理
                         euler_angles = LSM303D.get_euler_angles()
-                        roll = euler_angles[0,0]
-                        pitch = euler_angles[1,0]
-                        yaw = euler_angles[2,0]
-                        message = (str(roll) + CRLF + str(pitch) + CRLF + str(yaw)).encode() # エンコード
-                        message = message[::-1]
+                        
+                        if len(roll) > N_ave:
+                            roll.pop(0)
+                            pitch.pop(0)
+                            yaw.pop(0)
+
+                        roll.append(euler_angles[0,0])
+                        pitch.append(euler_angles[1,0])
+                        yaw.append(euler_angles[2,0])
+                        message = (str(roll.mean()) + CRLF + str(pitch.mean()) + CRLF + str(yaw.mean())).encode() # エンコード
+                        message = message[::-1] # Unity用にエンディアン変換
 
                     conn.sendall(message) # send    
     except:
