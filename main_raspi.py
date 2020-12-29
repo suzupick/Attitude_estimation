@@ -47,9 +47,9 @@ def attitude_server():
                             pitch.pop(0)
                             yaw.pop(0)
 
-                        roll.append(euler_angles[0,0])
-                        pitch.append(euler_angles[1,0])
-                        yaw.append(euler_angles[2,0])
+                        roll = np.append(roll, euler_angles[0,0])
+                        pitch = np.append(pitch, euler_angles[1,0])
+                        yaw = np.append(yaw, euler_angles[2,0])
                         message = (str(roll.mean()) + CRLF + str(pitch.mean()) + CRLF + str(yaw.mean())).encode() # エンコード
                         message = message[::-1] # Unity用にエンディアン変換
 
