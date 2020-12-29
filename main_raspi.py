@@ -15,7 +15,7 @@ import LSM303D
 CRLF = "\r\n"
 
 def attitude_server():
-    ip_adr = "192.168.0.6"
+    ip_adr = "192.168.0.9"
     port = 50007
     message = ""
 
@@ -38,6 +38,7 @@ def attitude_server():
                         pitch = euler_angles[1,0]
                         yaw = euler_angles[2,0]
                         message = (str(roll) + CRLF + str(pitch) + CRLF + str(yaw)).encode() # エンコード
+                        message = message[::-1]
 
                     conn.sendall(message) # send    
     except:
