@@ -41,7 +41,7 @@ class socket_comm:
 
 
 if __name__ == "__main__":
-    RPi_3Dcmps = socket_comm("192.168.0.6", 50007)
+    RPi_3Dcmps = socket_comm("192.168.0.9", 50007)
     RPi_3Dcmps.connect()
     euler_angles = RPi_3Dcmps.request_attitude()
     print(euler_angles)

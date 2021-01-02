@@ -24,7 +24,7 @@ def attitude_server():
     s.bind((ip_adr, port)) # IPアドレスとポートを指定
     s.listen(1) # 並列処理数
 
-    N_ave = 10
+    N_ave = 7
     roll = np.empty(N_ave)
     pitch = np.empty(N_ave)
     yaw = np.empty(N_ave)
@@ -50,8 +50,8 @@ def attitude_server():
                         roll = np.append(roll, euler_angles[0,0])
                         pitch = np.append(pitch, euler_angles[1,0])
                         yaw = np.append(yaw, euler_angles[2,0])
-                        message = (str(np.mean(roll)) + CRLF + str(np.mean(pitch)) + CRLF + str(np.mean(yaw)).encode() # エンコード
-                        message = message[::-1] # Unity用にエンディアン変換
+                        message = (str(np.mean(roll)) + CRLF + str(np.mean(pitch)) + CRLF + str(np.mean(yaw))).encode() # エンコード
+                        # message = message[::-1] # Unity用にエンディアン変換
 
                     conn.sendall(message) # send    
     except:
